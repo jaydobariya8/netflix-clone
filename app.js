@@ -1,14 +1,14 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require("express");
+const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.listen(3000, () => {
+  console.log("Application started and Listening on port 3000");
+});
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+// serve your css as static
+// app.use(express.static(__dirname ));
+app.use(express.static('public'))
 
-const path = require('path')
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
